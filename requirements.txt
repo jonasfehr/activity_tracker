@@ -1,0 +1,6 @@
+pynput
+pygetwindow
+fastapi
+uvicorn
+ics
+jinja2

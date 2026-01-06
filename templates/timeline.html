@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timeline {{ day }}</title>
+  <link rel="stylesheet" href="/static/css/timeline.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Timeline {{ day }}</h2>
+    <div class="controls" role="region" aria-label="Timeline controls">
+      <label>Focus <input id="focusToggle" type="checkbox" {% if focus %}checked{% endif %}></label>
+      <label>Height <input id="heightRange" type="range" min="400" max="3000" value="{{ height }}"></label>
+      <button id="toggleDay" class="btn">Toggle Full/Focus</button>
+      <button id="todayBtn" class="btn">Today</button>
+      <a class="btn" href="/export/csv">Export CSV</a>
+      <div id="eventsCount" class="events-count" aria-live="polite" aria-atomic="true" style="margin-left:auto; font-size:13px; color:#555">0 Einträge</div>
+    </div>    
+    <div id="noticeArea" aria-live="polite" style="margin-top:6px"></div>
+
+    <div class="timeline-wrap">
+      <div class="time-labels" id="timeLabels" aria-hidden="true"></div>
+      <div class="timeline" id="timeline" role="list" aria-label="Timeline"></div>
+    </div>
+
+
+  </div>
+
+  <script>
+    // pass data from server to client
+    window.EVENTS = {{ events_json | safe }};
+    window.DAY = "{{ day }}";
+    window.FOCUS = {% if focus %}true{% else %}false{% endif %};
+    window.HEIGHT = {{ height }};
+    // pixels per 15min (injected from server). Use default 0 when not provided to avoid invalid JS.
+    window.PX_PER_QUARTER = {{ px_per_quarter | default(0) }};
+  </script>
+  <script src="/static/js/timeline.js"></script>
+</body>
+</html>

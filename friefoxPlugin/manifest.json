@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Sender Extension",
+  "version": "1.0",
+  "description": "Sends the active tab's title and URL to a local server every 10 seconds.",
+  "permissions": [
+    "tabs",
+    "http://127.0.0.1:5000/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
