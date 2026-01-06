@@ -209,3 +209,4 @@ __marimo__/
 
 # for this Project
 *.db
+.DS_Store
